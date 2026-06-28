@@ -1,0 +1,141 @@
+{
+  "lastUpdatedAfterGame": 1,
+  "players": [
+    {
+      "id": "aesyas",
+      "name": "Aesyas",
+      "title": "The Silver Quill",
+      "keywords": [
+        { "name": "Solad", "description": "You rule over the Duchy of Solad." },
+        { "name": "Tiryll", "description": "You rule over the Mark of Tiryll." }
+      ],
+      "agendas": [
+        {
+          "title": "Family Matters",
+          "number": 1,
+          "narrative": "You have recently uncovered a secret laboratory that belonged to your late father, Titus. Once a member of Ankist's scholarly elite, the Quite Wardens, he was cast out and accused of forbidden rites. You had long dreamed of joining their ranks, but since his disgrace they have kept you at a distance. Perhaps this hidden place holds the truth of why he betrayed his peers before falling into madness. Yet after weeks of study, you uncovered no trace of his dark research. Instead, you found a Crystal Farscope, a marvel from the Age of Kings. With some repair, it could become a powerful tool in your hands.",
+          "relatedSkill": "Crystal Farscope"
+        },
+        {
+          "title": "Alchemic Preservation",
+          "number": null,
+          "narrative": "During the Age of Disorder, in a cave outside Lybra, a woman's corpse was found—eerily preserved, with a sharp metallic odor. You, one of the kingdom's leading scholars, have been tasked with examining it. Her organs are stiff but intact. No blood remains, only a clear, pungent liquid with irritating properties flowing through her veins. If you can understand and replicate this substance, you might unlock an unknown—or long-forgotten—element of nature.",
+          "relatedSkill": "Alchemic Preservation"
+        }
+      ],
+      "skills": [
+        {
+          "title": "Alchemic Preservation",
+          "narrative": "You have discovered an uncanny preserving substance previously unknown—or forgotten.",
+          "ability": "During Dilemma Resolution, you may spend 2 (coin) to prevent the Slider from moving toward Tradition. This does not prevent Hegemony tokens to be placed on Tradition."
+        },
+        {
+          "title": "Crystal Farscope",
+          "narrative": "You've restored the Crystal Farscope, a lost relic crafted by the legendary Hysadora.",
+          "ability": "Once per game, during your turn, you may ask a player how much (power) they have in their Treasury; they must tell the truth."
+        }
+      ]
+    },
+    {
+      "id": "syd",
+      "name": "Syd",
+      "title": "The Feral",
+      "keywords": [
+        { "name": "Blodyn", "description": "You rule over the Duchy of Blodyn." },
+        { "name": "Natar", "description": "You rule over the Duchy of Natar." },
+        { "name": "Sweet Beyond Lab", "description": "You control the largest workshop for the substance." }
+      ],
+      "agendas": [
+        {
+          "title": "Ashen Fields",
+          "number": 1,
+          "narrative": "One of your advisors arrives with grim news: several of your Ash Bread fields have been burned, wiping out a significant portion of the next harvest. It doesn't appear to be a random accident caused by seasonal hot winds. Suspicious metal caskets, reeking of pitch, were found in the charred woods. It is now a priority to replant the Ash Bread to prevent further damage to your trade. Whoever was behind this, you will find out—and they will pay for it, soon.",
+          "relatedSkill": null
+        }
+      ],
+      "skills": []
+    },
+    {
+      "id": "elinor",
+      "name": "Elinor",
+      "title": "The Herald of the Past",
+      "keywords": [
+        { "name": "Allwed", "description": "You rule over the Mark of Allwed." },
+        { "name": "Crann", "description": "You rule over the Mark of Crann." },
+        { "name": "Silver Mallet", "description": "You are the patron of the Silver Mallet." }
+      ],
+      "agendas": [
+        {
+          "title": "Master of Finance",
+          "number": null,
+          "narrative": "Your family is one of the oldest in the realm, which is why, during the Age of Disorder, you were entrusted with managing relations between us and Kauppias' Ban of Cards. Now, Queen Serena still leaves the handling of our vassal state's bank to you, and it falls to you to ensure the kingdom gains as much profit as possible. The Crown will surely reward your service.",
+          "relatedSkill": "Master of Finance"
+        }
+      ],
+      "skills": [
+        {
+          "title": "Master of Finance",
+          "narrative": "You have been granted a share of every investment made through the Bank of Cards.",
+          "ability": "Once per game, when you obtain or give away (coin) as part of a Deal with another player, you may gain +1 (coin) from the general supply."
+        }
+      ]
+    },
+    {
+      "id": "jilian",
+      "name": "Jilian",
+      "title": "The Silk Weaver",
+      "keywords": [
+        { "name": "Olwyn", "description": "You rule over the Duchy of Olwyn." },
+        { "name": "Wylio", "description": "You rule over the Mark of Wylio." }
+      ],
+      "agendas": [],
+      "skills": []
+    },
+    {
+      "id": "lyre",
+      "name": "Lyre",
+      "title": "The Visionary Patron",
+      "keywords": [
+        { "name": "Coden", "description": "You rule over the Duchy of Coden." },
+        { "name": "Gamam", "description": "You rule over the Duchy of Gamam." }
+      ],
+      "agendas": [],
+      "skills": []
+    },
+    {
+      "id": "xanthe",
+      "name": "Xanthe",
+      "title": "The Crimson Shield",
+      "keywords": [
+        { "name": "Dualak", "description": null },
+        { "name": "Tork", "description": null }
+      ],
+      "agendas": [
+        {
+          "title": "Uncommon Heritage",
+          "number": 1,
+          "narrative": "You are a newly appointed noble with no heirs and Enkhali heritage—a minority from the Fola Fuar mountains famed for martial prowess and atheism. Your rule is fragile. Barons in your land openly question it, and rumours whisper of secret meetings to undermine you. Send guards and pay informants to expose their plot—and show them the strength of Fola Fuar blood.",
+          "relatedSkill": "Determination"
+        },
+        {
+          "title": "Exalted Wardens",
+          "number": null,
+          "narrative": "After the attempted assassination of Serena the Gamam during the Age of Disorder, you were entrusted with training her new, personal guard—the Exalted Wardens. The most skilled and loyal soldiers are chosen to join this elite unit of 100, sworn to protect Queen Serena and answer to no one but her. It is your duty to prepare the next generation of Wardens, charged with the realm's greatest task: guarding the Queen even at the cost of their own lives.",
+          "relatedSkill": "Exalted Wardens"
+        }
+      ],
+      "skills": [
+        {
+          "title": "Determination",
+          "narrative": "By defeating the discrediting efforts of local nobles, you strengthened your rule.",
+          "ability": "During the Income Phase, you gain +1 (Power)."
+        },
+        {
+          "title": "Exalted Wardens",
+          "narrative": "Leading the Exalted Wardens is a great honor and a proof of loyalty to the Queen.",
+          "ability": "When you successfully perform Army Investment, you gain an additional +1 (Hegemony)."
+        }
+      ]
+    }
+  ]
+}
