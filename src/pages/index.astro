@@ -21,7 +21,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <GameNewspaperCard
       gameNumber={game.gameNumber}
       summary={game.summary}
-      headlineDilemmaIds={game.headlineDilemmaIds}
       dilemmas={game.dilemmas}
       href={`${base}/chronicle/${game.gameNumber}/`}
     />

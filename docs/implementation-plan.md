@@ -64,7 +64,6 @@ Two things came out of the planning phase: the site itself (built incrementally 
 {
   "gameNumber": 1,
   "summary": "The Council's first session was consumed by the war against the Undying Scorpion...",
-  "headlineDilemmaIds": ["W.02.3", "DAOD.01", "W.00.3", "DAOD.00"],
   "dilemmas": [
     {
       "id": "DAOD.03",
@@ -86,8 +85,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
 }
 ```
 
-- `summary` is a newspaper-style lead paragraph for the whole game, written once all of that game's dilemmas are transcribed — synthesizes the decisions and any plotlines that emerged, in past-tense reporting voice rather than a bullet recap. Shown on the Chronicle index card.
-- `headlineDilemmaIds` is a curated array of 3-4 `id`s (not all dilemmas) picked as that game's most dramatic/consequential — referenced by id rather than duplicating title text, so the Chronicle index "headlines" stay in sync with each dilemma's own title.
+- `summary` is a newspaper-style lead paragraph for the whole game, written once all of that game's dilemmas are transcribed — synthesizes the decisions and any plotlines that emerged, in past-tense reporting voice rather than a bullet recap. Shown on the Chronicle index card, along with every dilemma's `title` listed as a headline (no separate curation field — the index always reflects every dilemma in the game).
 - `id` is the card's `PREFIX.NN` with no `.F`/`.B` suffix — the join key between a dilemma photo and its resolution photo.
 - `threadCode` is purely a parse of the ID prefix — kept for data fidelity, but **not** used to decide which plotline thread to display or link to (the ID prefix has already been observed to disagree with the dilemma's actual narrative content, e.g. a `W`-prefixed dilemma whose resolution unlocked an `M`-thread plotline).
 - `plotlineThreadCode` (nullable string) is the editorial, content-based judgment of which `plotlines.json` thread `code` this dilemma actually belongs to — set only when the narrative content explicitly matches that thread's story, never inferred from `threadCode`. `null`/absent when uncertain. Always unset for `threadCode: "DAOD"` dilemmas (Age of Disorder expansion filler — confirmed to never get a plotline). The Chronicle page uses this to decide what to show next to each dilemma: the matching thread's name (hyperlinked to `/plot/#thread-{code}`) when set, `"Age of Disorder Thread"` (no link) when `threadCode` is `DAOD`, or `"??? thread"` (no link) otherwise.

@@ -9,15 +9,12 @@ interface Dilemma {
 interface Props {
   gameNumber: number;
   summary: string;
-  headlineDilemmaIds: string[];
   dilemmas: Dilemma[];
   href: string;
 }
 
-const { gameNumber, summary, headlineDilemmaIds, dilemmas, href } = Astro.props;
-const headlines = headlineDilemmaIds
-  .map((id) => dilemmas.find((d) => d.id === id)?.title)
-  .filter((title): title is string => Boolean(title));
+const { gameNumber, summary, dilemmas, href } = Astro.props;
+const headlines = dilemmas.map((d) => d.title);
 ---
 
 <a class="newspaper" href={href}>

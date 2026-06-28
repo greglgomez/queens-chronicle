@@ -1,7 +1,6 @@
 {
   "gameNumber": 2,
   "summary": "A new and dangerous drug, Sweet Beyond, dominated the Council's second session. After refusing an exclusive deal with its alchemist, the guards stormed the Fin's hidden laboratory by force, exposing both the criminal syndicate behind its trade and the grim secret of its origin in the harvested glands of Sirens. Meanwhile, the Scourge of Coden continued murdering golden-eyed women unchecked, as the Council declined a curfew to protect the taverns' coin. Elsewhere, Baron Lychen's bid for First Judge collapsed under suspicion of extremist sympathies, Aontas finally received its due investment, Dualak's gruesome new play was banned outright, and the kingdom's youngest laborers won new protections.",
-  "headlineDilemmaIds": ["D.15.3", "D.16.2", "W.00.2", "DAOD.02"],
   "dilemmas": [
     {
       "id": "W.02.1",
