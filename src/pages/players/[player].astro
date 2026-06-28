@@ -6,6 +6,7 @@ import AgendaList from '../../components/AgendaList.astro';
 import SkillList from '../../components/SkillList.astro';
 import playersData from '../../data/players.json';
 import { getPortrait, getCrest } from '../../utils/playerImages';
+import { renderRichText } from '../../utils/richText';
 
 export function getStaticPaths() {
   return playersData.players.map((player) => ({
@@ -35,7 +36,6 @@ const crest = getCrest(player.id);
           src={crest}
           alt={`Crest of ${player.name}`}
           width={110}
-          height={110}
           class="portrait-badge__portrait portrait-badge__portrait--crest-only"
         />
       ) : null}
@@ -44,7 +44,6 @@ const crest = getCrest(player.id);
           src={crest}
           alt={`Crest of ${player.name}`}
           width={53}
-          height={53}
           class="portrait-badge__crest"
         />
       )}
@@ -53,6 +52,7 @@ const crest = getCrest(player.id);
       {player.name} <span class="player-detail__title">{player.title}</span>
     </h1>
   </div>
+  {player.intro && <p class="player-detail__intro" set:html={renderRichText(player.intro)} />}
   <KeywordList keywords={player.keywords} />
   <AgendaList agendas={player.agendas} />
   <SkillList skills={player.skills} />
@@ -76,10 +76,19 @@ const crest = getCrest(player.id);
   }
 
   .player-detail__title {
+    font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 400;
     font-size: 0.55em;
     color: var(--color-ink-light);
+  }
+
+  .player-detail__intro {
+    font-size: 1.1rem;
+    color: var(--color-ink-light);
+    border-left: 3px solid var(--color-border);
+    padding-left: 1rem;
+    margin: 0 0 1.5rem;
   }
 
   @media (max-width: 480px) {

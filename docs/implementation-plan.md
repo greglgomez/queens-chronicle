@@ -36,6 +36,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
       "id": "aesyas",
       "name": "Aesyas",
       "title": "The Silver Quill",
+      "intro": "Mentor to Serena and one of the kingdom's most progressive and insightful scholars, Aesyas has long inspired the realm toward reform.",
       "keywords": [
         { "name": "Solad", "description": "You rule over the Duchy of Solad." }
       ],
@@ -52,6 +53,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
 ```
 
 - `id`: slug from name (`aesyas`, `syd`, `elinor`, `jilian`, `lyre`, `xanthe`) — used for `/players/[player]` routing.
+- `intro`: a short hand-written bio blurb shown on the player detail page, between the header and Keywords.
 - `agendas`/`skills` arrays are always present, even if empty (Jilian and Lyre currently have neither) — simplifies templates.
 - `agendas[].number` is nullable; don't invent numbering where the source has none.
 - `relatedSkill` is nullable and, when set, should match a `skills[].title` for the same player so the UI can cross-link agenda → skill.

@@ -36,7 +36,6 @@ const crest = getCrest(id);
         src={crest}
         alt={`Crest of ${name}`}
         width={56}
-        height={56}
         class="portrait-badge__portrait portrait-badge__portrait--crest-only"
       />
     ) : null}
@@ -45,7 +44,6 @@ const crest = getCrest(id);
         src={crest}
         alt={`Crest of ${name}`}
         width={31}
-        height={31}
         class="portrait-badge__crest"
       />
     )}
@@ -83,6 +81,7 @@ const crest = getCrest(id);
   }
 
   .player-card__title {
+    font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 400;
     font-size: 0.7em;

@@ -5,6 +5,7 @@
       "id": "aesyas",
       "name": "Aesyas",
       "title": "The Silver Quill",
+      "intro": "Mentor to Serena and one of the kingdom's most progressive and insightful scholars, Aesyas has long inspired the realm toward reform.",
       "keywords": [
         { "name": "Solad", "description": "You rule over the Duchy of Solad." },
         { "name": "Tiryll", "description": "You rule over the Mark of Tiryll." }
@@ -40,6 +41,7 @@
       "id": "syd",
       "name": "Syd",
       "title": "The Feral",
+      "intro": "A ruthless noble, deeply entwined with the criminal underworld, who trusts no one and moves through shadows with cold calculation.",
       "keywords": [
         { "name": "Blodyn", "description": "You rule over the Duchy of Blodyn." },
         { "name": "Natar", "description": "You rule over the Duchy of Natar." },
@@ -59,6 +61,7 @@
       "id": "elinor",
       "name": "Elinor",
       "title": "The Herald of the Past",
+      "intro": "Her lineage is as old as Ankist itself. Elinor commands enduring influence among the nobility and the Cult through name alone.",
       "keywords": [
         { "name": "Allwed", "description": "You rule over the Mark of Allwed." },
         { "name": "Crann", "description": "You rule over the Mark of Crann." },
@@ -84,6 +87,7 @@
       "id": "jilian",
       "name": "Jilian",
       "title": "The Silk Weaver",
+      "intro": "A rising diplomat and negotiator, adept in persuasion, intrigue, and statecraft, weaving words and schemes with equal skill.",
       "keywords": [
         { "name": "Olwyn", "description": "You rule over the Duchy of Olwyn." },
         { "name": "Wylio", "description": "You rule over the Mark of Wylio." }
@@ -95,6 +99,7 @@
       "id": "lyre",
       "name": "Lyre",
       "title": "The Visionary Patron",
+      "intro": "A visionary cultural icon and founder of Fredomism—a radical artistic movement championing uninhibited self-expression.",
       "keywords": [
         { "name": "Coden", "description": "You rule over the Duchy of Coden." },
         { "name": "Gamam", "description": "You rule over the Duchy of Gamam." }
@@ -106,6 +111,7 @@
       "id": "xanthe",
       "name": "Xanthe",
       "title": "The Crimson Shield",
+      "intro": "A fierce warrior and newly elevated noble of Enkhali descent, as well as Queen Serena's closest confidant—her most trusted friend and right hand.",
       "keywords": [
         { "name": "Dualak", "description": null },
         { "name": "Tork", "description": null }
