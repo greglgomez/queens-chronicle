@@ -1,0 +1,35 @@
+---
+import { renderRichText, slugify } from '../utils/richText';
+
+interface Agenda {
+  title: string;
+  number: number | null;
+  narrative: string;
+  relatedSkill: string | null;
+}
+
+interface Props {
+  agendas: Agenda[];
+}
+
+const { agendas } = Astro.props;
+---
+
+{agendas.length > 0 && (
+  <section>
+    <h3>Agendas Complete</h3>
+    {agendas.map((agenda) => (
+      <article class="card">
+        <h4>{agenda.number ? `${agenda.number}. ` : ''}{agenda.title}</h4>
+        <p set:html={renderRichText(agenda.narrative)} />
+        {agenda.relatedSkill && (
+          <p>
+            <a href={`#skill-${slugify(agenda.relatedSkill)}`}>
+              Related Skill: {agenda.relatedSkill}
+            </a>
+          </p>
+        )}
+      </article>
+    ))}
+  </section>
+)}

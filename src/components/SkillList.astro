@@ -1,0 +1,28 @@
+---
+import { renderRichText, slugify } from '../utils/richText';
+
+interface Skill {
+  title: string;
+  narrative: string;
+  ability: string;
+}
+
+interface Props {
+  skills: Skill[];
+}
+
+const { skills } = Astro.props;
+---
+
+{skills.length > 0 && (
+  <section>
+    <h3>Skills</h3>
+    {skills.map((skill) => (
+      <article class="card" id={`skill-${slugify(skill.title)}`}>
+        <h4>{skill.title}</h4>
+        <p set:html={renderRichText(skill.narrative)} />
+        <p><strong>Ability:</strong> <span set:html={renderRichText(skill.ability)} /></p>
+      </article>
+    ))}
+  </section>
+)}

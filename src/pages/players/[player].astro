@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeywordList from '../../components/KeywordList.astro';
+import AgendaList from '../../components/AgendaList.astro';
+import SkillList from '../../components/SkillList.astro';
+import playersData from '../../data/players.json';
+
+export function getStaticPaths() {
+  return playersData.players.map((player) => ({
+    params: { player: player.id },
+    props: { player },
+  }));
+}
+
+const { player } = Astro.props;
+---
+
+<BaseLayout title={player.name}>
+  <h1>{player.name}</h1>
+  <p class="player-title">{player.title}</p>
+  <KeywordList keywords={player.keywords} />
+  <AgendaList agendas={player.agendas} />
+  <SkillList skills={player.skills} />
+</BaseLayout>
+
+<style>
+  .player-title {
+    font-style: italic;
+    color: var(--color-ink-light);
+    margin-top: -0.5rem;
+  }
+</style>

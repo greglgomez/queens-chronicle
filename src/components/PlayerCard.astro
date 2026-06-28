@@ -1,0 +1,42 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  title: string;
+  keywordCount: number;
+  agendaCount: number;
+  skillCount: number;
+}
+
+const { id, name, title, keywordCount, agendaCount, skillCount } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<a class="player-card card" href={`${base}/players/${id}/`}>
+  <h3>{name}</h3>
+  <p class="player-card__title">{title}</p>
+  <p class="player-card__stats">
+    {keywordCount} keyword{keywordCount === 1 ? '' : 's'} ·
+    {agendaCount} agenda{agendaCount === 1 ? '' : 's'} ·
+    {skillCount} skill{skillCount === 1 ? '' : 's'}
+  </p>
+</a>
+
+<style>
+  .player-card {
+    display: block;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .player-card__title {
+    font-style: italic;
+    color: var(--color-ink-light);
+    margin: 0.25rem 0;
+  }
+
+  .player-card__stats {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+</style>

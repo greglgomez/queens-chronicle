@@ -1,0 +1,36 @@
+---
+import { renderRichText } from '../utils/richText';
+
+interface Keyword {
+  name: string;
+  description: string | null;
+}
+
+interface Props {
+  keywords: Keyword[];
+}
+
+const { keywords } = Astro.props;
+---
+
+{keywords.length > 0 && (
+  <section>
+    <h3>Keywords</h3>
+    <ul class="keyword-list">
+      {keywords.map((keyword) => (
+        <li>
+          <strong>{keyword.name}</strong>
+          {keyword.description && (
+            <span set:html={` — ${renderRichText(keyword.description)}`} />
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .keyword-list {
+    padding-left: 1.25rem;
+  }
+</style>

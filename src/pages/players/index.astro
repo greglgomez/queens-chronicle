@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlayerCard from '../../components/PlayerCard.astro';
+import playersData from '../../data/players.json';
+---
+
+<BaseLayout title="The Players">
+  <h1>The Players</h1>
+  <p>The councillors of Ankist and what they hold, claim, and can do.</p>
+  {playersData.players.map((player) => (
+    <PlayerCard
+      id={player.id}
+      name={player.name}
+      title={player.title}
+      keywordCount={player.keywords.length}
+      agendaCount={player.agendas.length}
+      skillCount={player.skills.length}
+    />
+  ))}
+</BaseLayout>
