@@ -8,6 +8,6 @@ import plotlines from '../../data/plotlines.json';
   <h1>The Plot</h1>
   <p>The plotlines uncovered so far, by thread.</p>
   {plotlines.threads.map((thread) => (
-    <PlotlineThread name={thread.name} cards={thread.cards} />
+    <PlotlineThread code={thread.code} name={thread.name} cards={thread.cards} />
   ))}
 </BaseLayout>

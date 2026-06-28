@@ -1,5 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const sections = [
+  {
+    href: `${base}/chronicle/`,
+    title: 'The Chronicle',
+    description: "Every dilemma put before the Council, and how it was resolved.",
+  },
+  {
+    href: `${base}/plot/`,
+    title: 'The Plot',
+    description: 'The plotlines uncovered so far, by thread.',
+  },
+  {
+    href: `${base}/players/`,
+    title: 'The Players',
+    description: 'Each councillor\'s keywords, agendas, and skills.',
+  },
+];
 ---
 
 <BaseLayout title="Home">
@@ -9,4 +29,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     put before the Council, the plotlines they've unlocked, and the players
     who have shaped the realm of Ankist.
   </p>
+  {sections.map((section) => (
+    <a class="card section-link" href={section.href}>
+      <h2>{section.title}</h2>
+      <p>{section.description}</p>
+    </a>
+  ))}
 </BaseLayout>
+
+<style>
+  .section-link {
+    display: block;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .section-link p {
+    margin: 0;
+  }
+</style>

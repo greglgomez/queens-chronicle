@@ -10,15 +10,16 @@ interface Card {
 }
 
 interface Props {
+  code: string;
   name: string;
   cards: Card[];
 }
 
-const { name, cards } = Astro.props;
+const { code, name, cards } = Astro.props;
 const sorted = [...cards].sort((a, b) => a.sequence - b.sequence);
 ---
 
-<section>
+<section id={`thread-${code}`}>
   <h2>{name}</h2>
   {sorted.map((card) => (
     <PlotlineCard
