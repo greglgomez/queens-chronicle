@@ -1,0 +1,31 @@
+---
+import PlotlineCard from './PlotlineCard.astro';
+
+interface Card {
+  id: string;
+  sequence: number;
+  title: string;
+  narrative: string | null;
+  unlockedInGame: number;
+}
+
+interface Props {
+  name: string;
+  cards: Card[];
+}
+
+const { name, cards } = Astro.props;
+const sorted = [...cards].sort((a, b) => a.sequence - b.sequence);
+---
+
+<section>
+  <h2>{name}</h2>
+  {sorted.map((card) => (
+    <PlotlineCard
+      sequence={card.sequence}
+      title={card.title}
+      narrative={card.narrative}
+      unlockedInGame={card.unlockedInGame}
+    />
+  ))}
+</section>

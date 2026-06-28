@@ -1,0 +1,31 @@
+---
+import { renderRichText } from '../utils/richText';
+
+interface Props {
+  sequence: number;
+  title: string;
+  narrative: string | null;
+  unlockedInGame: number;
+}
+
+const { sequence, title, narrative, unlockedInGame } = Astro.props;
+---
+
+<article class="card">
+  <header class="plotline-card__header">
+    <h4>{sequence}. {title}</h4>
+    <span class="tag">Game {unlockedInGame}</span>
+  </header>
+  {narrative
+    ? <p set:html={renderRichText(narrative)} />
+    : <p><em>Narrative not yet recorded.</em></p>}
+</article>
+
+<style>
+  .plotline-card__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+</style>
