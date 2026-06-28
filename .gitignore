@@ -1,6 +1,11 @@
 node_modules/
 dist/
 .astro/
+.env
+.env.production
+.DS_Store
+.idea/
+.claude/settings.local.json
 
 # Raw card photographs: ephemeral ingestion source, never committed/shipped.
 # Ingestion output (JSON) lives under src/data/, which is unaffected by this rule.
