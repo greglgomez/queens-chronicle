@@ -21,10 +21,12 @@ This is the procedure for turning a new game session's card photos into chronicl
 
 4. **Transcribe each dilemma per the schema** in `docs/implementation-plan.md` (`src/data/games/0N.json`):
    - `id` / `threadCode` / `sequence` parsed from the card ID.
+   - `title`: write a short, evocative title for the dilemma that reflects both the prompt and how it actually resolved (e.g. "An Anthem Too Refined for the Tavern", not "DAOD.03" and not a flat restatement of the question). This is the heading shown on the Chronicle page — never use the card ID as the title.
    - `prompt`: the dilemma's narrative/question text.
    - `aye.icons` / `nay.icons`: the small icons shown in each ribbon, using the icon vocabulary below.
    - `resolution.outcome`, `resolution.narrative`, `resolution.leader` (verbatim string — don't over-normalize; the box isn't always labelled "Leader", sometimes it names a region/keyword instead, e.g. `Wylio: -1🪶` — transcribe whatever it says; tiny reference glyphs before card codes like `C178`/`A037`/`K14` are just card-type markers, safe to drop, keep the code itself), `resolution.resourceChanges` (array of `{icon, amount}`; amounts can be negative), `resolution.envelope` (optional string, e.g. `"02"` — only present when the winning side's ribbon shows a small numbered envelope icon, meaning a physical envelope to open; omit when absent, don't force it onto every entry).
    - If a dilemma's prompt visually bolds a word in a different (gothic/blackletter-ish) font versus the body serif, preserve that as `**bold**` in the JSON string rather than dropping the styling — this marks a keyword relevant to a player's holdings.
+   - Keep transcribing the mechanical fields (`aye`/`nay` icons, `leader`, `resourceChanges`, `envelope`) even though the Chronicle page doesn't display them — it's a narrative chronicle, not a rules tracker, but the structured data is still worth keeping for the record.
 
 5. **Icon vocabulary.** Use only names from this list (locked from a full pass over game 1's 20 photos). If a glyph doesn't match anything here, stop and ask the human to name it rather than inventing one — then add it to this list.
    - `feather` — single quill/feather blade in a diamond

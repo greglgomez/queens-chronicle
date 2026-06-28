@@ -1,24 +1,14 @@
 ---
-import IconBadge from './IconBadge.astro';
 import { renderRichText } from '../utils/richText';
-
-interface ResourceChange {
-  icon: string;
-  amount: number;
-}
 
 interface Dilemma {
   id: string;
   threadCode: string;
+  title: string;
   prompt: string;
-  aye: { icons: string[] };
-  nay: { icons: string[] };
   resolution: {
     outcome: 'aye' | 'nay';
     narrative: string;
-    leader: string | null;
-    resourceChanges: ResourceChange[];
-    envelope?: string;
   };
 }
 
@@ -32,70 +22,53 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <article class="card dilemma-card">
-  <header class="dilemma-card__header">
-    <h3>
-      {dilemma.id} ·{' '}
-      <a href={`${base}/plot/#thread-${dilemma.threadCode}`}>{dilemma.threadCode}</a>
-    </h3>
-    <span class={`tag tag--${won}`}>{won.toUpperCase()} won</span>
-  </header>
+  <h3>{dilemma.title}</h3>
+  <p class="dilemma-card__byline">
+    <a href={`${base}/plot/#thread-${dilemma.threadCode}`}>{dilemma.threadCode}</a> thread
+  </p>
 
   <p set:html={renderRichText(dilemma.prompt)} />
 
-  <div class="dilemma-card__options">
-    <div>
-      <strong class="tag tag--aye">AYE</strong>
-      {dilemma.aye.icons.map((icon) => <IconBadge icon={icon} />)}
-    </div>
-    <div>
-      <strong class="tag tag--nay">NAY</strong>
-      {dilemma.nay.icons.map((icon) => <IconBadge icon={icon} />)}
-    </div>
-  </div>
-
-  <div class="dilemma-card__resolution">
-    <h4>Resolution</h4>
+  <div class={`dilemma-card__resolution dilemma-card__resolution--${won}`}>
+    <p class="dilemma-card__outcome">Resolved {won}</p>
     <p set:html={renderRichText(dilemma.resolution.narrative)} />
-    {dilemma.resolution.leader && <p><em>{dilemma.resolution.leader}</em></p>}
-    <div>
-      {dilemma.resolution.resourceChanges.map((change) => (
-        <IconBadge icon={change.icon} amount={change.amount} />
-      ))}
-    </div>
-    {dilemma.resolution.envelope && (
-      <p class="dilemma-card__envelope">Open envelope {dilemma.resolution.envelope}.</p>
-    )}
   </div>
 </article>
 
 <style>
-  .dilemma-card__header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .dilemma-card__options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 1rem 0;
+  .dilemma-card__byline {
+    margin: -0.5rem 0 1rem;
+    font-size: 0.85rem;
+    color: var(--color-ink-light);
   }
 
   .dilemma-card__resolution {
-    border-top: 1px dashed var(--color-border);
-    padding-top: 1rem;
+    border-left: 3px solid var(--color-border);
+    padding: 0.25rem 0 0.25rem 1rem;
+    margin-top: 1rem;
   }
 
-  .dilemma-card__envelope {
-    font-style: italic;
+  .dilemma-card__resolution--aye {
+    border-left-color: var(--color-aye);
   }
 
-  @media (min-width: 640px) {
-    .dilemma-card__options {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  .dilemma-card__resolution--nay {
+    border-left-color: var(--color-nay);
+  }
+
+  .dilemma-card__outcome {
+    margin: 0 0 0.25rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-light);
+  }
+
+  .dilemma-card__resolution--aye .dilemma-card__outcome {
+    color: var(--color-aye);
+  }
+
+  .dilemma-card__resolution--nay .dilemma-card__outcome {
+    color: var(--color-nay);
   }
 </style>

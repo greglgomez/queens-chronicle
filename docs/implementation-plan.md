@@ -68,6 +68,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
       "id": "DAOD.03",
       "threadCode": "DAOD",
       "sequence": 3,
+      "title": "An Anthem Too Refined for the Tavern",
       "prompt": "The Tribune has uncovered a shocking oversight...",
       "aye": { "icons": ["axe", "wheel", "plus"] },
       "nay": { "icons": ["scroll", "key", "plus"] },
@@ -83,12 +84,14 @@ Two things came out of the planning phase: the site itself (built incrementally 
 ```
 
 - `id` is the card's `PREFIX.NN` with no `.F`/`.B` suffix — the join key between a dilemma photo and its resolution photo.
+- `title` is an evocative title the chronicler writes for the dilemma, reflecting both the prompt and how it actually resolved (e.g. "An Anthem Too Refined for the Tavern", not "DAOD.03") — this is what's shown as the heading on the Chronicle page, never the card ID.
 - `outcome` is `"aye" | "nay"`, decided by which block was upright in the resolution photo (cross-checked against ribbon colour).
 - Only the winning side's resolution detail is recorded — no losing-side sub-object.
 - `leader` stays a free-form transcribed string (the box format varies card to card); don't force structure onto it.
 - `resourceChanges[].amount` can be negative — don't assume positive-only.
 - Icon names come from a small fixed vocabulary (locked in increment 9, see `CLAUDE.md`) — if ingestion meets a glyph not in the vocabulary, it should stop and ask rather than invent a name.
 - `resolution.envelope` (optional, string, e.g. `"02"`): some resolutions show a small numbered envelope icon next to the winning side's ribbon, indicating a physical envelope the chronicler should open. Omit the field entirely when no envelope is shown — most dilemmas don't reference one.
+- `aye.icons`/`nay.icons`/`resolution.leader`/`resolution.resourceChanges`/`resolution.envelope` are kept as a structured mechanical record, but the Chronicle page deliberately doesn't render them — it's a narrative chronicle, not a rules tracker. Only `title`, `prompt`, `resolution.outcome`, and `resolution.narrative` are displayed.
 
 ### `src/data/plotlines.json` — single global file, accumulates across all games
 
