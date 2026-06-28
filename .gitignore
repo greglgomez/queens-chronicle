@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+
+# Raw card photographs: ephemeral ingestion source, never committed/shipped.
+# Ingestion output (JSON) lives under src/data/, which is unaffected by this rule.
+games/**/*.jpg
+games/**/*.jpeg
+games/**/*.png
+games/**/*.heic
+
+# Official publisher PDFs (rulebook/lore) — reference material only, same
+# copyright concern as the card photos above, kept local-only.
+game-resources/
