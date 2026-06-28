@@ -15,7 +15,7 @@ This is the procedure for turning a new game session's card photos into chronicl
 
 1. **Locate inputs.** Check `games/0N/dilemmas/*.jpg`, `games/0N/resolutions/*.jpg`, `games/0N/plotlines/*.jpg`. Confirm dilemma and resolution counts roughly match — a mismatch is a red flag to surface to the human, not silently resolve. Don't assume a `games/0N` folder is ready just because it exists; some are created ahead of time and sit empty until that session is played.
 
-2. **Pair dilemma ↔ resolution by card ID.** Every dilemma and resolution card has a printed ID near an edge, format `PREFIX.NN.F` (dilemma front) or `PREFIX.NN.B` (resolution back) — e.g. `DAOD.03.F` / `DAOD.03.B`. Strip the `.F`/`.B` suffix; matching `PREFIX.NN` is the join key. Flag any dilemma with no matching resolution, or vice versa, instead of guessing.
+2. **Pair dilemma ↔ resolution by card ID.** Every dilemma and resolution card has a printed ID near an edge, format `PREFIX.NN.F` (dilemma front) or `PREFIX.NN.B` (resolution back) — e.g. `DAOD.03.F` / `DAOD.03.B`. Some threads use a 3-segment form instead, e.g. `W.00.1.F` (thread `W`, chapter `00`, card `1` within that chapter) — treat everything before the final `.F`/`.B` as the join key (`DAOD.03`, `W.00.1`) regardless of segment count; don't assume every thread uses the same ID shape. Flag any dilemma with no matching resolution, or vice versa, instead of guessing.
 
 3. **Determine the winning resolution.** Each resolution photo shows two text blocks printed 180° apart on the same physical card. The block that is **upright in the photo** is the outcome that actually happened — the chronicler always photographs the card so the winning text reads normally. Ignore the upside-down block entirely; never transcribe it. Cross-check `outcome` (`"aye"` or `"nay"`) against the colour of the small ribbon under the upright block — blue ribbon = aye, red ribbon = nay (same convention as the dilemma card's AYE/NAY ribbons).
 
@@ -23,14 +23,25 @@ This is the procedure for turning a new game session's card photos into chronicl
    - `id` / `threadCode` / `sequence` parsed from the card ID.
    - `prompt`: the dilemma's narrative/question text.
    - `aye.icons` / `nay.icons`: the small icons shown in each ribbon, using the icon vocabulary below.
-   - `resolution.outcome`, `resolution.narrative`, `resolution.leader` (verbatim string — don't over-normalize, the box format varies card to card), `resolution.resourceChanges` (array of `{icon, amount}`; amounts can be negative).
+   - `resolution.outcome`, `resolution.narrative`, `resolution.leader` (verbatim string — don't over-normalize; the box isn't always labelled "Leader", sometimes it names a region/keyword instead, e.g. `Wylio: -1🪶` — transcribe whatever it says), `resolution.resourceChanges` (array of `{icon, amount}`; amounts can be negative).
    - If a dilemma's prompt visually bolds a word in a different (gothic/blackletter-ish) font versus the body serif, preserve that as `**bold**` in the JSON string rather than dropping the styling — this marks a keyword relevant to a player's holdings.
 
-5. **Icon vocabulary.** Use only names from this list. If a glyph doesn't match anything here, stop and ask the human to name it rather than inventing one — then add it to this list.
-   - `feather`, `scroll`, `wheel`, `axe`, `compass`, `plus`, `question-mark`, `key`, `sword-circle` (plotline thread icon)
-   - *(This list was seeded from game 1's photos. Expect to extend it — re-check this section after each ingestion run.)*
+5. **Icon vocabulary.** Use only names from this list (locked from a full pass over game 1's 20 photos). If a glyph doesn't match anything here, stop and ask the human to name it rather than inventing one — then add it to this list.
+   - `feather` — single quill/feather blade in a diamond
+   - `wheel` — circular gear/cog
+   - `axe` — angled blade/sickle shape
+   - `column` — T-shaped pillar
+   - `compass` — two-legged drafting compass/dividers
+   - `ribbon` — circular rosette/medal with banner tails
+   - `key` — key shape
+   - `paw` — clawed paw/footprint
+   - `letter-a` — stylized "A" glyph
+   - `plus` — simple cross
+   - `question-mark` — "?"
+   - `sword-circle` — plotline thread icon (seen on the `W`/War thread; expect a different glyph per thread)
+   - *(Seeded from game 1's photos only — re-check this section after each ingestion run and extend it for any new thread's icon set.)*
 
-6. **Plotlines — front/back handling.** Each plotline card's back face (`.B`) is normally self-contained: icon + title + sequence number + full narrative together. The front face (`.F`) is just cover art + title + number, no narrative. Prefer the back face. Only merge front+back data if the back photo is missing (front gives title/number/icon, narrative stays `null` and gets flagged).
+6. **Plotlines — front/back handling, and sequence numbers.** Each plotline card's back face (`.B`) is normally self-contained: icon + title + sequence number + full narrative together. The front face (`.F`) is just cover art + title + number, no narrative. Prefer the back face. Only merge front+back data if the back photo is missing (front gives title/number/icon, narrative stays `null` and gets flagged). Use the **number printed on the card's ribbon** (e.g. the bold "1", "2", "3") as `sequence` — don't derive it by parsing the chapter digits out of the card ID (e.g. `W.03`'s printed number was `3`, but the chapter digits don't reliably equal `sequence - 1`; the printed number is the publisher's actual reading order and is the only reliable source).
 
 7. **Merge into `plotlines.json`, don't overwrite.** New plotline cards are appended into their thread's `cards` array (creating a new thread entry if the prefix code is new) and the array is re-sorted by `sequence`. This file accumulates across all games — unlike the per-game chronicle file, it is never replaced wholesale.
 
