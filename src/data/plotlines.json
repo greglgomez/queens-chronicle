@@ -1,0 +1,32 @@
+{
+  "threads": [
+    {
+      "code": "W",
+      "name": "War",
+      "icon": "sword-circle",
+      "cards": [
+        {
+          "id": "W.00",
+          "sequence": 1,
+          "title": "Scorching Sands",
+          "narrative": "Year 440. A year into the war in Konfurtah against the Kingdom of the Undying Scorpion, the conflict is proving excruciatingly difficult. Widram is a sharp tactician who knows the land well: we lose more ground than we gain. But the most terrifying threat is what we cannot see. Our fallen soldiers are vanishing from the battlegrounds, their bodies nowhere to be found. Rumors suggest the enemy is desecrating the corpses, draining them of blood to survive the harsh desert, possibly taking advantage of the frequent sandstorms to act undisturbed. Our troops are petrified. According to the Cult's teachings, without proper burial a soul cannot return to the Mother's womb, nor reincarnate into this world. The thought of eternal severance from the cycle of life weighs heavily on our soldiers' morale, threatening to break their resolve.",
+          "unlockedInGame": 1
+        },
+        {
+          "id": "W.02",
+          "sequence": 2,
+          "title": "Terror in the Ranks",
+          "narrative": "We push forward and cross another of the enemy's defensive lines, but leave the bodies of our fallen compatriots behind. As the corpses of our dead soldiers keep disappearing, rumors spread through the ranks that Widram feeds his soldiers with the blood of our comrades and turns victories into cruel banquets. We cannot confirm whether this is scaremonger propaganda or not, but morale is at an all-time low. Our soldiers do not fear death, but dread not being properly buried and thus severed from the rebirth cycle of the Mother. Desertions increase, and as Queen Serena presses our troops to proceed further, our ranks get thinner and we start to lose more and more battles.",
+          "unlockedInGame": 1
+        },
+        {
+          "id": "W.03",
+          "sequence": 3,
+          "title": "Silver Mallet",
+          "narrative": "The bodies of our fallen soldiers keep vanishing in the sands, but—to the great relief of our troops—the Council recreates the Silver Mallet, a legendary institution devoted to fighting unnatural threats in the name of Ankist and the Mother. Battling Sisters are trained in the ways of the war hammer, whilst the most experienced knights are indoctrinated in the divine truths of the Cult to shield them from the perils of fear. Most are immediately deployed to assist in the war effort, while a few remain home to inspire and reassure our people. Galvanized by the Mallet's presence, our troops' spirit is lifted. May the tide of the war turn in our favor as we hastily march towards Nidar Ilak, bastion of the Undying Scorpion!",
+          "unlockedInGame": 1
+        }
+      ]
+    }
+  ]
+}

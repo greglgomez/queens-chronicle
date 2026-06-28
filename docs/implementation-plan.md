@@ -88,6 +88,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
 - `leader` stays a free-form transcribed string (the box format varies card to card); don't force structure onto it.
 - `resourceChanges[].amount` can be negative — don't assume positive-only.
 - Icon names come from a small fixed vocabulary (locked in increment 9, see `CLAUDE.md`) — if ingestion meets a glyph not in the vocabulary, it should stop and ask rather than invent a name.
+- `resolution.envelope` (optional, string, e.g. `"02"`): some resolutions show a small numbered envelope icon next to the winning side's ribbon, indicating a physical envelope the chronicler should open. Omit the field entirely when no envelope is shown — most dilemmas don't reference one.
 
 ### `src/data/plotlines.json` — single global file, accumulates across all games
 
