@@ -18,7 +18,7 @@ export function resolveDilemmaThread(
   base: string,
 ): { label: string; href: string | null } {
   if (dilemma.threadCode === 'DAOD') {
-    return { label: 'Age of Disorder Thread', href: null };
+    return { label: 'Age of Disorder', href: null };
   }
 
   if (dilemma.plotlineThreadCode) {
@@ -28,5 +28,5 @@ export function resolveDilemmaThread(
     }
   }
 
-  return { label: '??? thread', href: null };
+  return { label: '???', href: null };
 }

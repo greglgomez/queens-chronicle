@@ -24,7 +24,7 @@ const won = dilemma.resolution.outcome;
 <article class="card dilemma-card">
   <h3>{dilemma.title}</h3>
   <p class="dilemma-card__byline">
-    {threadHref ? <a href={threadHref}>{threadLabel}</a> : threadLabel}
+    Plotline: {threadHref ? <a href={threadHref}>{threadLabel}</a> : threadLabel}
   </p>
 
   <p set:html={renderRichText(dilemma.prompt)} />
@@ -46,6 +46,14 @@ const won = dilemma.resolution.outcome;
     border-left: 3px solid var(--color-border);
     padding: 0.25rem 0 0.25rem 1rem;
     margin-top: 1rem;
+  }
+
+  .dilemma-card__resolution > :first-child {
+    margin-top: 0;
+  }
+
+  .dilemma-card__resolution > :last-child {
+    margin-bottom: 0;
   }
 
   .dilemma-card__resolution--aye {
