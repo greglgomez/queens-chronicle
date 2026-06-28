@@ -1,5 +1,7 @@
 {
   "gameNumber": 1,
+  "summary": "The Council's first session was consumed by the war against the Undying Scorpion. Despite the horrors haunting Konfurtah, Serena pressed the army onward without burying its dead, and when terror spread through the ranks at the news, the Prior Mother's Silver Mallet was revived under the Cult's banner to fight back. At home, the Council shattered Serena's own statue to placate Mhuir, chose the refined Markiavel over a rowdier rival to write the royal anthem, spared Wylio a harsher levy, and approved the controversial Askadar Academy over traditionalist objections.",
+  "headlineDilemmaIds": ["W.02.3", "DAOD.01", "W.00.3", "DAOD.00"],
   "dilemmas": [
     {
       "id": "DAOD.03",

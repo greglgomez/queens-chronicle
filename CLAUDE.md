@@ -55,6 +55,10 @@ This is the procedure for turning a new game session's card photos into chronicl
 
 8. **Write `src/data/games/0N.json` fresh** — chronicle files are per-game, not accumulated.
 
-9. **Never auto-edit `src/data/players.json`.** Player state is hand-curated by the chronicler from the physical booklets. Don't touch it during ingestion unless the human explicitly asks you to.
+9. **Write the game-level `summary` and `headlineDilemmaIds`**, once all of that game's dilemmas are transcribed:
+   - `summary` (string): a short newspaper-style lead paragraph (3-5 sentences) synthesizing the game as a whole — the decisions made and how they resolved, and any plotlines that emerged as a result. Write it in past-tense reporting voice, not a bullet recap; weave the dilemmas together narratively rather than listing them one by one.
+   - `headlineDilemmaIds` (array of 3-4 dilemma `id` strings from that same game): a curated pick of the game's most dramatic or consequential dilemmas, used as "headlines" on the Chronicle index card. Reference existing dilemma `id`s rather than duplicating their `title` text, so the headline always stays in sync with the dilemma page. Not every dilemma needs to be picked — leave out the more minor ones.
 
-10. **Self-check before finishing.** Report back: how many dilemmas processed, how many paired with a resolution, how many plotline cards merged into which threads. List any unresolved flags from steps 2/3/6 rather than silently guessing through them.
+10. **Never auto-edit `src/data/players.json`.** Player state is hand-curated by the chronicler from the physical booklets. Don't touch it during ingestion unless the human explicitly asks you to.
+
+11. **Self-check before finishing.** Report back: how many dilemmas processed, how many paired with a resolution, how many plotline cards merged into which threads. List any unresolved flags from steps 2/3/6 rather than silently guessing through them.

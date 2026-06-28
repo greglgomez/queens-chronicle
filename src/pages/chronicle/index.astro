@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GameNewspaperCard from '../../components/GameNewspaperCard.astro';
 
 const gameFiles = import.meta.glob('../../data/games/*.json', { eager: true });
-const games = Object.values(gameFiles)
-  .map((game: any) => game.gameNumber)
-  .sort((a: number, b: number) => a - b);
+const games = Object.values(gameFiles).sort(
+  (a: any, b: any) => a.gameNumber - b.gameNumber,
+);
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -12,9 +13,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <BaseLayout title="The Chronicle">
   <h1>The Chronicle</h1>
   <p>Every dilemma put before the Council, and how it was resolved.</p>
-  <ul>
-    {games.map((gameNumber) => (
-      <li><a href={`${base}/chronicle/${gameNumber}/`}>Game {gameNumber}</a></li>
-    ))}
-  </ul>
+  {games.map((game: any) => (
+    <GameNewspaperCard
+      gameNumber={game.gameNumber}
+      summary={game.summary}
+      headlineDilemmaIds={game.headlineDilemmaIds}
+      dilemmas={game.dilemmas}
+      href={`${base}/chronicle/${game.gameNumber}/`}
+    />
+  ))}
 </BaseLayout>

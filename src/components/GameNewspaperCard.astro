@@ -1,0 +1,111 @@
+---
+import { renderRichText } from '../utils/richText';
+
+interface Dilemma {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  gameNumber: number;
+  summary: string;
+  headlineDilemmaIds: string[];
+  dilemmas: Dilemma[];
+  href: string;
+}
+
+const { gameNumber, summary, headlineDilemmaIds, dilemmas, href } = Astro.props;
+const headlines = headlineDilemmaIds
+  .map((id) => dilemmas.find((d) => d.id === id)?.title)
+  .filter((title): title is string => Boolean(title));
+---
+
+<a class="newspaper" href={href}>
+  <header class="newspaper__masthead">
+    <span class="newspaper__edition">Game No. {gameNumber}</span>
+  </header>
+  <p class="newspaper__summary" set:html={renderRichText(summary)} />
+  <ul class="newspaper__headlines">
+    {headlines.map((headline) => (
+      <li>{headline}</li>
+    ))}
+  </ul>
+</a>
+
+<style>
+  .newspaper {
+    display: block;
+    text-decoration: none;
+    color: var(--color-ink);
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--color-border);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .newspaper:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .newspaper__masthead {
+    text-align: center;
+    border-top: 3px double var(--color-ink);
+    border-bottom: 3px double var(--color-ink);
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .newspaper__edition {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .newspaper__summary {
+    text-align: justify;
+    hyphens: auto;
+    margin: 0 0 1rem;
+  }
+
+  .newspaper__summary::first-letter {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 700;
+    float: left;
+    line-height: 1;
+    padding-right: 0.4rem;
+    padding-top: 0.1rem;
+  }
+
+  .newspaper__headlines {
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 0 0;
+    border-top: 1px solid var(--color-border);
+    column-count: 1;
+    column-gap: 1.5rem;
+  }
+
+  .newspaper__headlines li {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    padding: 0.4rem 0;
+    break-inside: avoid;
+  }
+
+  .newspaper__headlines li + li {
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 640px) {
+    .newspaper__headlines {
+      column-count: 2;
+    }
+  }
+</style>
