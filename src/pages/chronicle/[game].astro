@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DilemmaCard from '../../components/DilemmaCard.astro';
+
+export function getStaticPaths() {
+  const gameFiles = import.meta.glob('../../data/games/*.json', { eager: true });
+  return Object.values(gameFiles).map((game: any) => ({
+    params: { game: String(game.gameNumber) },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+---
+
+<BaseLayout title={`Game ${game.gameNumber}`}>
+  <h1>Game {game.gameNumber}</h1>
+  {game.dilemmas.map((dilemma: any) => (
+    <DilemmaCard dilemma={dilemma} />
+  ))}
+</BaseLayout>

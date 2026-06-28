@@ -1,0 +1,33 @@
+---
+interface Props {
+  icon: string;
+  amount?: number | null;
+}
+
+const { icon, amount } = Astro.props;
+const label = icon.replace(/-/g, ' ');
+---
+
+<span class="icon-badge">
+  {label}{typeof amount === 'number' && <span class="icon-badge__amount">×{amount}</span>}
+</span>
+
+<style>
+  .icon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--color-border);
+    border-radius: 0.2rem;
+    padding: 0.1rem 0.45rem;
+    margin: 0 0.25rem 0.25rem 0;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .icon-badge__amount {
+    font-weight: bold;
+  }
+</style>

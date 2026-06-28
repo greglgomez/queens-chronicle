@@ -1,0 +1,97 @@
+---
+import IconBadge from './IconBadge.astro';
+import { renderRichText } from '../utils/richText';
+
+interface ResourceChange {
+  icon: string;
+  amount: number;
+}
+
+interface Dilemma {
+  id: string;
+  threadCode: string;
+  prompt: string;
+  aye: { icons: string[] };
+  nay: { icons: string[] };
+  resolution: {
+    outcome: 'aye' | 'nay';
+    narrative: string;
+    leader: string | null;
+    resourceChanges: ResourceChange[];
+    envelope?: string;
+  };
+}
+
+interface Props {
+  dilemma: Dilemma;
+}
+
+const { dilemma } = Astro.props;
+const won = dilemma.resolution.outcome;
+---
+
+<article class="card dilemma-card">
+  <header class="dilemma-card__header">
+    <h3>{dilemma.id}</h3>
+    <span class={`tag tag--${won}`}>{won.toUpperCase()} won</span>
+  </header>
+
+  <p set:html={renderRichText(dilemma.prompt)} />
+
+  <div class="dilemma-card__options">
+    <div>
+      <strong class="tag tag--aye">AYE</strong>
+      {dilemma.aye.icons.map((icon) => <IconBadge icon={icon} />)}
+    </div>
+    <div>
+      <strong class="tag tag--nay">NAY</strong>
+      {dilemma.nay.icons.map((icon) => <IconBadge icon={icon} />)}
+    </div>
+  </div>
+
+  <div class="dilemma-card__resolution">
+    <h4>Resolution</h4>
+    <p set:html={renderRichText(dilemma.resolution.narrative)} />
+    {dilemma.resolution.leader && <p><em>{dilemma.resolution.leader}</em></p>}
+    <div>
+      {dilemma.resolution.resourceChanges.map((change) => (
+        <IconBadge icon={change.icon} amount={change.amount} />
+      ))}
+    </div>
+    {dilemma.resolution.envelope && (
+      <p class="dilemma-card__envelope">Open envelope {dilemma.resolution.envelope}.</p>
+    )}
+  </div>
+</article>
+
+<style>
+  .dilemma-card__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .dilemma-card__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .dilemma-card__resolution {
+    border-top: 1px dashed var(--color-border);
+    padding-top: 1rem;
+  }
+
+  .dilemma-card__envelope {
+    font-style: italic;
+  }
+
+  @media (min-width: 640px) {
+    .dilemma-card__options {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>
