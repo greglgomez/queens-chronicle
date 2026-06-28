@@ -68,6 +68,7 @@ Two things came out of the planning phase: the site itself (built incrementally 
       "id": "DAOD.03",
       "threadCode": "DAOD",
       "sequence": 3,
+      "plotlineThreadCode": null,
       "title": "An Anthem Too Refined for the Tavern",
       "prompt": "The Tribune has uncovered a shocking oversight...",
       "aye": { "icons": ["axe", "wheel", "plus"] },
@@ -84,6 +85,8 @@ Two things came out of the planning phase: the site itself (built incrementally 
 ```
 
 - `id` is the card's `PREFIX.NN` with no `.F`/`.B` suffix — the join key between a dilemma photo and its resolution photo.
+- `threadCode` is purely a parse of the ID prefix — kept for data fidelity, but **not** used to decide which plotline thread to display or link to (the ID prefix has already been observed to disagree with the dilemma's actual narrative content, e.g. a `W`-prefixed dilemma whose resolution unlocked an `M`-thread plotline).
+- `plotlineThreadCode` (nullable string) is the editorial, content-based judgment of which `plotlines.json` thread `code` this dilemma actually belongs to — set only when the narrative content explicitly matches that thread's story, never inferred from `threadCode`. `null`/absent when uncertain. Always unset for `threadCode: "DAOD"` dilemmas (Age of Disorder expansion filler — confirmed to never get a plotline). The Chronicle page uses this to decide what to show next to each dilemma: the matching thread's name (hyperlinked to `/plot/#thread-{code}`) when set, `"Age of Disorder Thread"` (no link) when `threadCode` is `DAOD`, or `"??? thread"` (no link) otherwise.
 - `title` is an evocative title the chronicler writes for the dilemma, reflecting both the prompt and how it actually resolved (e.g. "An Anthem Too Refined for the Tavern", not "DAOD.03") — this is what's shown as the heading on the Chronicle page, never the card ID.
 - `outcome` is `"aye" | "nay"`, decided by which block was upright in the resolution photo (cross-checked against ribbon colour).
 - Only the winning side's resolution detail is recorded — no losing-side sub-object.

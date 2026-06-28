@@ -3,7 +3,6 @@ import { renderRichText } from '../utils/richText';
 
 interface Dilemma {
   id: string;
-  threadCode: string;
   title: string;
   prompt: string;
   resolution: {
@@ -14,17 +13,18 @@ interface Dilemma {
 
 interface Props {
   dilemma: Dilemma;
+  threadLabel: string;
+  threadHref: string | null;
 }
 
-const { dilemma } = Astro.props;
+const { dilemma, threadLabel, threadHref } = Astro.props;
 const won = dilemma.resolution.outcome;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <article class="card dilemma-card">
   <h3>{dilemma.title}</h3>
   <p class="dilemma-card__byline">
-    <a href={`${base}/plot/#thread-${dilemma.threadCode}`}>{dilemma.threadCode}</a> thread
+    {threadHref ? <a href={threadHref}>{threadLabel}</a> : threadLabel}
   </p>
 
   <p set:html={renderRichText(dilemma.prompt)} />
