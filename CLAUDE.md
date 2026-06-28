@@ -24,7 +24,9 @@ This is the procedure for turning a new game session's card photos into chronicl
    - `title`: write a short, evocative title for the dilemma that reflects both the prompt and how it actually resolved (e.g. "An Anthem Too Refined for the Tavern", not "DAOD.03" and not a flat restatement of the question). This is the heading shown on the Chronicle page — never use the card ID as the title.
    - `prompt`: the dilemma's narrative/question text.
    - `aye.icons` / `nay.icons`: the small icons shown in each ribbon, using the icon vocabulary below.
-   - `resolution.outcome`, `resolution.narrative`, `resolution.leader` (verbatim string — don't over-normalize; the box isn't always labelled "Leader", sometimes it names a region/keyword instead, e.g. `Wylio: -1🪶` — transcribe whatever it says; tiny reference glyphs before card codes like `C178`/`A037`/`K14` are just card-type markers, safe to drop, keep the code itself), `resolution.resourceChanges` (array of `{icon, amount}`; amounts can be negative), `resolution.envelope` (optional string, e.g. `"02"` — only present when the winning side's ribbon shows a small numbered envelope icon, meaning a physical envelope to open; omit when absent, don't force it onto every entry).
+   - `resolution.outcome`, `resolution.narrative`, `resolution.leader` (verbatim string — don't over-normalize; the box isn't always labelled "Leader", sometimes it names a region/keyword instead, e.g. `Wylio: -1🪶`, or a generic group like `Winners: -1⛑` — transcribe whatever it says, describing any embedded icon in plain words rather than forcing it into the controlled vocabulary below; tiny reference glyphs before card codes like `C178`/`A037`/`K14` are just card-type markers, safe to drop, keep the code itself), `resolution.resourceChanges` (array of `{icon, amount}`; amounts can be negative).
+   - `resolution.envelope` (optional string, e.g. `"15"`) — only present when the winning side's ribbon shows a literal envelope/mail-shaped icon next to a number, meaning a physical envelope to open. Don't confuse this with the next field below; the two icons look different and can both appear on the same card for different (winning vs losing) sides.
+   - `resolution.unlocksPlotline` (optional string, e.g. `"M.02"`) — present when the winning side's ribbon shows a small **concentric-circle/target** icon next to a thread-qualified code. This points to the specific plotline card (thread + number) that gets revealed by this outcome — it is not a literal envelope. If the code has no thread prefix (just a bare number), assume it refers to the same thread as the dilemma itself.
    - If a dilemma's prompt visually bolds a word in a different (gothic/blackletter-ish) font versus the body serif, preserve that as `**bold**` in the JSON string rather than dropping the styling — this marks a keyword relevant to a player's holdings.
    - Keep transcribing the mechanical fields (`aye`/`nay` icons, `leader`, `resourceChanges`, `envelope`) even though the Chronicle page doesn't display them — it's a narrative chronicle, not a rules tracker, but the structured data is still worth keeping for the record.
 
@@ -39,9 +41,12 @@ This is the procedure for turning a new game session's card photos into chronicl
    - `paw` — clawed paw/footprint
    - `letter-a` — stylized "A" glyph
    - `plus` — simple cross
+   - `minus` — simple horizontal dash (seen on `nay.icons` only so far)
    - `question-mark` — "?"
-   - `sword-circle` — plotline thread icon (seen on the `W`/War thread; expect a different glyph per thread)
-   - *(Seeded from game 1's photos only — re-check this section after each ingestion run and extend it for any new thread's icon set.)*
+   - `sword-circle` — plotline thread icon (the `W`/War thread)
+   - `venus` — circle-with-cross (♀) plotline thread icon (the `D` thread)
+   - `figure` — stylized person with raised arms, plotline thread icon (the `R` thread)
+   - *(Seeded from games 1–2's photos — re-check this section after each ingestion run and extend it for any new thread's icon set. Note: a literal mail/envelope-shaped icon and a separate concentric-circle/target icon both appear on resolution cards but are tracked via the dedicated `envelope`/`unlocksPlotline` fields below, not this list — don't conflate them.)*
 
 6. **Plotlines — front/back handling, and sequence numbers.** Each plotline card's back face (`.B`) is normally self-contained: icon + title + sequence number + full narrative together. The front face (`.F`) is just cover art + title + number, no narrative. Prefer the back face. Only merge front+back data if the back photo is missing (front gives title/number/icon, narrative stays `null` and gets flagged). Use the **number printed on the card's ribbon** (e.g. the bold "1", "2", "3") as `sequence` — don't derive it by parsing the chapter digits out of the card ID (e.g. `W.03`'s printed number was `3`, but the chapter digits don't reliably equal `sequence - 1`; the printed number is the publisher's actual reading order and is the only reliable source).
 

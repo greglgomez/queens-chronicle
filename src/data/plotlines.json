@@ -27,6 +27,41 @@
           "unlockedInGame": 1
         }
       ]
+    },
+    {
+      "code": "D",
+      "name": "The Sweet Beyond",
+      "icon": "venus",
+      "cards": [
+        {
+          "id": "D.15",
+          "sequence": 1,
+          "title": "The Fin",
+          "narrative": "By leaving the Sweet Beyond market unregulated in Solad, control of its production and distribution has fallen into the hands of a newly emerged criminal syndicate known as the Fin. Sweet Beyond is spreading rapidly among society's poorest, who gather in droves at the port of Roinn, engaging in lewd and disruptive behavior that unsettles the populace. To fund their addictions, many impoverished users are also turning to crime, making the whole of Roinn a dangerous area and damaging the local economy. This poses a serious threat to public safety, but efforts to locate the Fin's production facilities and disrupt the black market have proven fruitless.",
+          "unlockedInGame": 2
+        },
+        {
+          "id": "D.16",
+          "sequence": 2,
+          "title": "Sirens",
+          "narrative": "Now that we control its largest laboratory, we finally uncover the secret surrounding Sweet Beyond: the substance is derived from the humors of previously unknown marine animals. Our scholars think they use these humors as a defense mechanism to distract potential predators by awakening their sexual instincts, diverting them to look for a mating partner instead of engaging in hunting. Given the vaguely feminine forms of these beasts, they may be the origin of the myth of the Sirens. The extraction process involves harvesting a gland found within the brains of these \"Sirens,\" only accessible after killing them. As our scholars delve deeper into the nature of this substance, they are beginning to ponder the other potential applications it might possess.",
+          "unlockedInGame": 2
+        }
+      ]
+    },
+    {
+      "code": "R",
+      "name": "The Scourge of Coden",
+      "icon": "figure",
+      "cards": [
+        {
+          "id": "R.25",
+          "sequence": 1,
+          "title": "Fear in Coden",
+          "narrative": "As we chose to ignore them, the murders in Coden continue—six more women die. There are too many coincidences to dismiss the same, morbid mind behind all of them: all victims are golden-eyed women, each one horribly cut open in the same spots—legs, abdomen, neck, back—as if the killer were searching for something. The selection of victims has also changed, now including farmers, artisans, and young noblewomen. The people of Coden try to go about their business, but it's hard to ignore the roaming murderer, now known as the \"Scourge of Coden.\" Even the Royal Jester Bambleass repeats the macabre rhyme, \"Golden Eyes, Short Lives.\"",
+          "unlockedInGame": 2
+        }
+      ]
     }
   ]
 }
