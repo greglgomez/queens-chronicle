@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import KeywordList from '../../components/KeywordList.astro';
 import AgendaList from '../../components/AgendaList.astro';
 import SkillList from '../../components/SkillList.astro';
 import playersData from '../../data/players.json';
+import { getPortrait, getCrest } from '../../utils/playerImages';
 
 export function getStaticPaths() {
   return playersData.players.map((player) => ({
@@ -13,20 +15,77 @@ export function getStaticPaths() {
 }
 
 const { player } = Astro.props;
+const portrait = getPortrait(player.id);
+const crest = getCrest(player.id);
 ---
 
 <BaseLayout title={player.name}>
-  <h1>{player.name}</h1>
-  <p class="player-title">{player.title}</p>
+  <div class="player-detail__header">
+    <div class="portrait-badge portrait-badge--lg">
+      {portrait ? (
+        <Image
+          src={portrait}
+          alt={`Portrait of ${player.name}`}
+          width={140}
+          height={140}
+          class="portrait-badge__portrait"
+        />
+      ) : crest ? (
+        <Image
+          src={crest}
+          alt={`Crest of ${player.name}`}
+          width={110}
+          height={110}
+          class="portrait-badge__portrait portrait-badge__portrait--crest-only"
+        />
+      ) : null}
+      {portrait && crest && (
+        <Image
+          src={crest}
+          alt={`Crest of ${player.name}`}
+          width={48}
+          height={48}
+          class="portrait-badge__crest"
+        />
+      )}
+    </div>
+    <h1 class="player-detail__heading">
+      {player.name} <span class="player-detail__title">{player.title}</span>
+    </h1>
+  </div>
   <KeywordList keywords={player.keywords} />
   <AgendaList agendas={player.agendas} />
   <SkillList skills={player.skills} />
 </BaseLayout>
 
 <style>
-  .player-title {
+  .player-detail__header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .portrait-badge--lg .portrait-badge__portrait {
+    border-width: 3px;
+  }
+
+  .player-detail__heading {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  .player-detail__title {
     font-style: italic;
+    font-weight: 400;
+    font-size: 0.55em;
     color: var(--color-ink-light);
-    margin-top: -0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .player-detail__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>

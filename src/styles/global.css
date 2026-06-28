@@ -42,6 +42,7 @@ h4 {
   letter-spacing: 0.01em;
   color: var(--color-ink);
   line-height: 1.25;
+  margin: 0 0 0.5rem;
 }
 
 h1 {
@@ -54,6 +55,10 @@ h2 {
 
 h3 {
   font-size: 1.35rem;
+}
+
+h4 {
+  font-size: 1.15rem;
 }
 
 a {
@@ -78,6 +83,45 @@ a:hover {
   border-radius: 0.25rem;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
+}
+
+.card > :first-child {
+  margin-top: 0;
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+.portrait-badge {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.portrait-badge__portrait {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.portrait-badge__portrait--crest-only {
+  border-radius: 0.25rem;
+  border: none;
+  background-color: transparent;
+  object-fit: contain;
+}
+
+.portrait-badge__crest {
+  position: absolute;
+  right: -0.4rem;
+  bottom: -0.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-parchment);
+  padding: 0.15rem;
 }
 
 .tag {

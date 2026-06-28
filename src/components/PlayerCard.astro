@@ -1,38 +1,96 @@
 ---
+import { Image } from 'astro:assets';
+import { getPortrait, getCrest } from '../utils/playerImages';
+
+interface Keyword {
+  name: string;
+}
+
 interface Props {
   id: string;
   name: string;
   title: string;
-  keywordCount: number;
+  keywords: Keyword[];
   agendaCount: number;
   skillCount: number;
 }
 
-const { id, name, title, keywordCount, agendaCount, skillCount } = Astro.props;
+const { id, name, title, keywords, agendaCount, skillCount } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const portrait = getPortrait(id);
+const crest = getCrest(id);
 ---
 
 <a class="player-card card" href={`${base}/players/${id}/`}>
-  <h3>{name}</h3>
-  <p class="player-card__title">{title}</p>
-  <p class="player-card__stats">
-    {keywordCount} keyword{keywordCount === 1 ? '' : 's'} ·
-    {agendaCount} agenda{agendaCount === 1 ? '' : 's'} ·
-    {skillCount} skill{skillCount === 1 ? '' : 's'}
-  </p>
+  <div class="portrait-badge">
+    {portrait ? (
+      <Image
+        src={portrait}
+        alt={`Portrait of ${name}`}
+        width={72}
+        height={72}
+        class="portrait-badge__portrait"
+      />
+    ) : crest ? (
+      <Image
+        src={crest}
+        alt={`Crest of ${name}`}
+        width={56}
+        height={56}
+        class="portrait-badge__portrait portrait-badge__portrait--crest-only"
+      />
+    ) : null}
+    {portrait && crest && (
+      <Image
+        src={crest}
+        alt={`Crest of ${name}`}
+        width={28}
+        height={28}
+        class="portrait-badge__crest"
+      />
+    )}
+  </div>
+  <div class="player-card__body">
+    <h3 class="player-card__heading">
+      {name} <span class="player-card__title">{title}</span>
+    </h3>
+    {keywords.length > 0 && (
+      <p class="player-card__keywords">{keywords.map((k) => k.name).join(' · ')}</p>
+    )}
+    <p class="player-card__stats">
+      {agendaCount} agenda{agendaCount === 1 ? '' : 's'} ·
+      {skillCount} skill{skillCount === 1 ? '' : 's'}
+    </p>
+  </div>
 </a>
 
 <style>
   .player-card {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     text-decoration: none;
     color: var(--color-ink);
   }
 
+  .player-card__body {
+    min-width: 0;
+  }
+
+  .player-card__heading {
+    font-size: 1.55rem;
+    margin-bottom: 0.3rem;
+  }
+
   .player-card__title {
     font-style: italic;
+    font-weight: 400;
+    font-size: 0.7em;
     color: var(--color-ink-light);
-    margin: 0.25rem 0;
+  }
+
+  .player-card__keywords {
+    margin: 0 0 0.3rem;
   }
 
   .player-card__stats {
